@@ -4,8 +4,8 @@ const {Schema} = mongoose;
 
 const LabelSchema = new Schema({
   name: { type: String, required: true },
-  contributors: [{ type: Schema.Types.ObjectId, ref: 'Artist' }],
-  founded: { type: Date },
+  contributors: [{ type: String }],
+  established: { type: Date },
 });
 
 const Label = mongoose.model('Label', LabelSchema);

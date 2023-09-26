@@ -3,18 +3,17 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const AlbumSchema = new Schema({
-  name: { type: String, 
+  title: { type: String, 
           required: true, 
           minlength: 1,
           maxlength: 100
         },
-  artist: [{ type: Schema.Types.ObjectId, ref: 'Artist', required: true }],
-  released: { type: Date },
+  artist: { type: Schema.Types.ObjectId, ref: 'Band', required: true },
+  releaseDate: { type: Date, required: true },
   cover: { type: String },
   genre: [{ type: Schema.Types.ObjectId, ref: 'Genre' }],
-  ISBN: { type: String },
   label: { type: Schema.Types.ObjectId, ref: 'Label' },
-  tracklist: { type: String } 
+  tracklist: [{ type: String }]
 });
 
 const Album = mongoose.model('Album', AlbumSchema);

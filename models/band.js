@@ -2,17 +2,15 @@ const mongoose = require('mongoose');
 
 const {Schema} = mongoose;
 
-const ArtistSchema = new Schema({
+const BandSchema = new Schema({
   stageName: { type: String, 
                required: true, 
                minlength: 2, 
                maxlength: 60 
             },
-  birthName: { type: String },
-  birthDate: { type: Date },
-  deathDate: { type: Date },
+  members: [{ type: Schema.Types.ObjectId, ref: 'Artist' }]
 });
 
-const Artist = mongoose.model('Artist', ArtistSchema);
+const Band = mongoose.model('Band', BandSchema);
 
-module.exports = Artist;
+module.exports = Band;
