@@ -11,6 +11,10 @@ const BandSchema = new Schema({
   members: [{ type: Schema.Types.ObjectId, ref: 'Artist' }]
 });
 
+BandSchema.virtual('url').get(function() {
+  return `/catalog/band/${this._id}`;
+});
+
 const Band = mongoose.model('Band', BandSchema);
 
 module.exports = Band;
