@@ -12,8 +12,7 @@ const AlbumSchema = new Schema({
   releaseDate: { type: Date, required: true },
   cover: { type: String },
   genre: [{ type: Schema.Types.ObjectId, ref: 'Genre' }],
-  label: { type: Schema.Types.ObjectId, ref: 'Label' },
-  tracklist: [{ type: String }]
+  label: { type: String }
 });
 
 const Album = mongoose.model('Album', AlbumSchema);
