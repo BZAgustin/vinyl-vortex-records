@@ -1,3 +1,5 @@
+const asyncHandler = require("express-async-handler");
+
 exports.labelList = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: Label List');
 });

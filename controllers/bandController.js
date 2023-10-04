@@ -1,3 +1,5 @@
+const asyncHandler = require("express-async-handler");
+
 const Artist = require("../models/band");
 
 exports.bandList = asyncHandler(async (req, res, next) => {
