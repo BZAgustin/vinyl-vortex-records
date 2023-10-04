@@ -7,6 +7,10 @@ const Genre = require("../models/genre");
 const Label = require("../models/label");
 const Band = require("../models/band");
 
+exports.index = asyncHandler(async (req, res, next) => {
+  res.render('index', { title: 'Catalog' });
+});
+
 exports.albumList = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: Album List');
 });
