@@ -29,26 +29,26 @@ exports.artistDetail = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.authorCreateGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author Create GET");
+exports.artistCreateGet = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Artist Create GET");
 });
 
-exports.authorCreatePost = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author Create POST");
+exports.artistCreatePost = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Artist Create POST");
 });
 
-exports.authorDeleteGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author Delete GET");
+exports.artistDeleteGet = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Artist Delete GET");
 });
 
-exports.authorDeletePost = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author Delete POST");
+exports.artistDeletePost = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Artist Delete POST");
 });
 
-exports.authorUpdateGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author Update GET");
+exports.artistUpdateGet = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Artist Update GET");
 });
 
-exports.authorUpdatePost = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author Update POST");
+exports.artistUpdatePost = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Artist Update POST");
 });
