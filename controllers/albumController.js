@@ -4,7 +4,6 @@ const Album = require("../models/album");
 const AlbumInstance = require("../models/albumInstance");
 const Artist = require("../models/artist");
 const Genre = require("../models/genre");
-const Label = require("../models/label");
 const Band = require("../models/band");
 
 exports.index = asyncHandler(async (req, res, next) => {
