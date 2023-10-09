@@ -5,7 +5,7 @@ const Album = require("../models/artist");
 
 // Display all Artists
 exports.artistList = asyncHandler(async (req, res, next) => {
-  const allArtists = await Artist.find({}).exec();
+  const allArtists = await Artist.find({}, "stageName").exec();
 
   res.render('artists', { title: "All Artists", artistList: allArtists })
 });
@@ -13,10 +13,10 @@ exports.artistList = asyncHandler(async (req, res, next) => {
 exports.artistDetail = asyncHandler(async (req, res, next) => {
   const [artist, allAlbumsByArtist] = await Promise.all([
     Artist.findById(req.params.id).exec(),
-    Album.find({ artist: req.params.id }, "title tracklist").exec()
+    Album.find({ artist: req.params.id }, "title releaseDate genre label").exec()
   ]);
 
-  if (artist === null) {
+  if (!artist) {
     const err = new Error("Artist not found");
     err.status = 404;
     return next(err);
