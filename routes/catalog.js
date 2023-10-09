@@ -1,5 +1,4 @@
 const express = require("express");
-
 const router = express.Router();
 
 const artistController = require('../controllers/artistController');
@@ -7,7 +6,6 @@ const bandController = require('../controllers/bandController');
 const albumController = require('../controllers/albumController');
 const albumInstanceController = require('../controllers/albumInstanceController');
 const genreController = require('../controllers/genreController');
-const labelController = require('../controllers/labelController');
 
 // -------------------- ALBUM ROUTES -------------------- //
 
@@ -83,24 +81,6 @@ router.get('/genre/:id', genreController.genreDetail);
 
 router.get('/genres', genreController.genreList);
 
-// -------------------- LABEL ROUTES -------------------- //
-
-router.get('/label/create', labelController.labelCreateGet);
-
-router.post('/label/create', labelController.labelCreatePost);
-
-router.get('/label/:id/delete', labelController.labelDeleteGet);
-
-router.post('/label/:id/delete', labelController.labelDeletePost);
-
-router.get('/label/:id/update', labelController.labelUpdateGet);
-
-router.post('/label/:id/update', labelController.labelUpdatePost);
-
-router.get('/label/:id', labelController.labelDetail);
-
-router.get('/labels', labelController.labelList);
-
 // -------------------- ALBUM INSTANCE ROUTES -------------------- //
 
 router.get('/albuminstance/create', albumInstanceController.albumInstanceCreateGet);
@@ -118,5 +98,7 @@ router.post('/albuminstance/:id/update', albumInstanceController.albumInstanceUp
 router.get('/albuminstance/:id', albumInstanceController.albumInstanceDetail);
 
 router.get('/albuminstances', albumInstanceController.albumInstanceList);
+
+router.get('/store', albumInstanceController.albumInstanceList)
 
 module.exports = router;
