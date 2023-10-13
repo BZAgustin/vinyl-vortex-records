@@ -11,7 +11,9 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.albumList = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Album List');
+  const allAlbums = await Album.find({}).exec();
+
+  res.render('albums', { title: "Albums", albumList: allAlbums });
 });
 
 exports.albumDetail = asyncHandler(async (req, res, next) => {
