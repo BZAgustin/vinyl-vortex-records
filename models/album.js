@@ -15,6 +15,10 @@ const AlbumSchema = new Schema({
   label: { type: String }
 });
 
+AlbumSchema.virtual('url').get(function() {
+  return `/catalog/album/${this._id}`;
+});
+
 const Album = mongoose.model('Album', AlbumSchema);
 
 module.exports = Album;
