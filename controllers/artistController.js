@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 
 const Artist = require("../models/artist");
-const Album = require("../models/artist");
 
 // Display all Artists
 exports.artistList = asyncHandler(async (req, res, next) => {
@@ -11,10 +10,9 @@ exports.artistList = asyncHandler(async (req, res, next) => {
 });
 
 exports.artistDetail = asyncHandler(async (req, res, next) => {
-  const [artist, allAlbumsByArtist] = await Promise.all([
-    Artist.findById(req.params.id).exec(),
-    Album.find({ artist: req.params.id }, "title releaseDate genre label").exec()
-  ]);
+  const artistId = req.params.id;
+
+  const artist = await Artist.findById(artistId).exec();
 
   if (!artist) {
     const err = new Error("Artist not found");
@@ -22,11 +20,7 @@ exports.artistDetail = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render("artistDetail", {
-    title: "Artist Detail",
-    artist,
-    artistAlbums: allAlbumsByArtist
-  });
+  res.render("artistDetail", { title: "Artist Detail", artist });
 });
 
 exports.artistCreateGet = asyncHandler(async (req, res, next) => {
