@@ -11,13 +11,19 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.albumList = asyncHandler(async (req, res, next) => {
-  const allAlbums = await Album.find({}).exec();
+  const allAlbums = await Album.find({})
+                               .populate('artist', 'stageName')
+                               .exec();
 
   res.render('albums', { title: "Albums", albumList: allAlbums });
 });
 
 exports.albumDetail = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Album Detail');
+  const album = await Album.findById(req.params.id)
+                           .populate('artist', 'stageName')
+                           .exec();
+
+  res.render('albumDetail', { album })
 });
 
 exports.albumCreateGet = asyncHandler(async (req, res, next) => {
