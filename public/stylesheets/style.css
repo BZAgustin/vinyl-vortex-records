@@ -1,9 +1,10 @@
 :root {
-  --texto: rgb(235, 239, 236);
+  --texto: rgb(232, 236, 237);
   --fondo: rgb(11, 14, 14);
-  --primario: rgb(88, 101, 83);
-  --secundario: rgb(32, 39, 34);
-  --acento: rgb(145, 149, 126);
+  --primario: rgb(55, 105, 118);
+  --secundario: rgb(18, 34, 38);
+  --acento: rgb(69, 155, 176);
+  --acento-2: rgb(69, 176, 155);
 }
 
 body {
@@ -21,22 +22,23 @@ a:hover {
 }
 
 header {
+  color: var(--texto);
   display: flex !important;
   align-items: center;
-  background-color: var(--acento);
+  background-color: var(--secundario);
 }
 
 header .button {
   background: rgb(52,60,50);
-  background: linear-gradient(180deg, rgba(52,60,50,1) 18%, rgba(88,101,83,1) 78%);
+  background: linear-gradient(180deg, rgba(50, 58, 60, 0.2) 18%, rgba(83, 101, 99, 0.2) 78%);
   border-radius: 15px;
-  outline: 1px solid rgba(88,101,83,0.5);
+  outline: 1px solid rgba(83, 85, 101, 0.2);
 }
 
 header .button:hover {
-  animation: gradientTransition 100ms;
-  box-shadow: 0px 0px 15px rgb(193, 202, 190);
-  outline: 2px solid rgba(157, 179, 158, 0.8);
+  animation: gradientTransition 150ms;
+  background: rgba(83, 101, 99, 0.2);
+  box-shadow: 0px 0px 5px rgba(145, 163, 155, 0.3);
 }
 
 header img {
@@ -60,15 +62,23 @@ main {
 }
 
 .btn-primary {
-  background-color: var(--acento) !important;
-  border: 1px solid var(--acento) !important;
+  background-color: var(--acento-2) !important;
+  border: 1px solid var(--acento-2) !important;
+}
+
+.btn-primary:hover {
+  background-color: rgba(69, 176, 155, 0.2) !important;
+  border: 1px solid white !important;
 }
 
 @keyframes gradientTransition {
   0% {
-    background: linear-gradient(45deg, #ff6b6b, #ffa07a); /* Start gradient */
+    background: rgba(111, 123, 122, 0.3);
+  }
+  50% {
+    background: rgba(102, 119, 117, 0.3);
   }
   100% {
-    background: linear-gradient(45deg, #87CEEB, #6A5ACD); /* End gradient */
+    background: rgba(83, 101, 99, 0.3);
   }
 }
