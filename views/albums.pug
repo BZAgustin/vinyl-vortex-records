@@ -7,10 +7,10 @@ block content
     .row
       each album in albumList
         .col-md-4
-          .card.mb-4.d-flex.flex-column.align-items-center.p-3
-            img(class="card-img-top w-50", src="/images/artistDefaultImage.png", alt="Card image cap")
+          .card.mb-4.d-flex.flex-column.align-items-center.justify-content-center.p-3
+            img(class="card-img-top w-50", src="/images/albumDefaultImage.png", alt="Card image cap")
             .card-body.d-flex.flex-column.align-items-center
-              h5(class="card-title") #{album.title}
+              h2(class="card-title") #{album.title}
               h6(class="card-title") #{album.artist.stageName}
               a(href=album.url, class="btn btn-primary") View
 
