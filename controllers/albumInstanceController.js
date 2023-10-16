@@ -1,13 +1,34 @@
 const asyncHandler = require("express-async-handler");
 
 const album = require('../models/album');
+const AlbumInstance = require('../models/albumInstance');
 
 exports.albumInstanceList = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Album Instance List');
+  const albumInstances = await AlbumInstance.find({}).exec();
+
+  const albumsInStock = await AlbumInstance.populate(albumInstances, {
+    path: 'album',
+    populate: {
+      path: 'artist',
+      select: 'stageName',
+    },
+  });
+
+  res.render("store", { title: "Store", albumInstanceList: albumsInStock })
 });
 
 exports.albumInstanceDetail = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Album Instance Detail');
+  const albumInstance = await AlbumInstance.findById(req.params.id).exec();
+
+  const albumDetail = await AlbumInstance.populate(albumInstance, {
+    path: 'album',
+    populate: {
+      path: 'artist',
+      select: 'stageName',
+    }
+  });
+
+  res.render('albumInstanceDetail', { title: 'Album Copy Details', albumDetail })
 });
 
 exports.albumInstanceCreateGet = asyncHandler(async (req, res, next) => {
