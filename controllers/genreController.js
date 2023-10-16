@@ -1,11 +1,25 @@
 const asyncHandler = require("express-async-handler");
 
+const Genre = require('../models/genre');
+const Album = require('../models/album')
+
 exports.genreList = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Genre List');
+  const genres = await Genre.find({}).exec();
+  
+  res.render('genres', { title: "Genres", genreList: genres });
 });
 
 exports.genreDetail = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Genre Detail');
+  const genreId = req.params.id;
+
+  const [genre, albumsWithGenre] = await Promise.all([
+    Genre.findById(genreId).exec(),
+    Album.find({ genre: genreId }).exec()
+  ]);
+
+  console.log(albumsWithGenre);
+
+  res.render('genreDetail', { title: 'Genre Detail', genre, albumsWithGenre })
 });
 
 exports.genreCreateGet = asyncHandler(async (req, res, next) => {
