@@ -4,10 +4,27 @@ const Album = require("../models/album");
 const AlbumInstance = require("../models/albumInstance");
 const Artist = require("../models/artist");
 const Genre = require("../models/genre");
-const Band = require("../models/band");
 
 exports.index = asyncHandler(async (req, res, next) => {
-  res.render('index', { title: 'Catalog' });
+  const [
+    numAlbums,
+    numAlbumInstances,
+    numArtists,
+    numGenres,
+  ] = await Promise.all([
+    Album.countDocuments({}).exec(),
+    AlbumInstance.countDocuments({}).exec(),
+    Artist.countDocuments({}).exec(),
+    Genre.countDocuments({}).exec(),
+  ]);
+
+  res.render('index', { 
+    title: 'Catalog',
+    albumCount: numAlbums,
+    stockCount: numAlbumInstances,
+    artistCount: numArtists, 
+    genreCount: numGenres
+  });
 });
 
 exports.albumList = asyncHandler(async (req, res, next) => {
