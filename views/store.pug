@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+  h1(class="text-center display-4 mb-4")= title 
+
+  div(class="container")
+    .row
+      each albumInstance in albumInstanceList
+        .col-md-4
+          .card.mb-4.d-flex.flex-column.align-items-center.justify-content-center.p-3
+            img(class="card-img-top w-50", src="/images/albumDefaultImage.png", alt="Card image cap")
+            .card-body.d-flex.flex-column.align-items-center
+              h2(class="card-title") #{albumInstance.album.title}
+              h6(class="card-title") #{albumInstance.album.artist.stageName}
+              a(href=albumInstance.url, class="btn btn-primary") View
+
+      else
+        p There are no artists.
