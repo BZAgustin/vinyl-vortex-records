@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require("express-validator");
 
 const Genre = require('../models/genre');
 const Album = require('../models/album')
@@ -23,12 +24,38 @@ exports.genreDetail = asyncHandler(async (req, res, next) => {
 });
 
 exports.genreCreateGet = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Genre Create GET');
+  res.render('genreForm', { title: 'Add Genre' });
 });
 
-exports.genreCreatePost = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Genre Create POST');
-});
+exports.genreCreatePost = [
+  body('name', 'Genre name must contain at least 2 characters')
+    .trim()
+    .isLength({ min: 2 })
+    .escape(),
+  
+    asyncHandler(async (req, res, next) => {
+      const errors = validationResult(req);
+
+      const genre = new Genre({ name: req.body.name });
+
+      if(!errors.isEmpty()) {
+        res.render('genreForm', {
+          title: 'Add Genre',
+          genre,
+          errors: errors.array()
+        });
+        return;
+      } else {
+        const genreExists = await Genre.findOne({ name: req.body.name }).exec();
+        if (genreExists) {
+          res.redirect(genreExists.url);
+        } else {
+          await genre.save();
+          res.redirect(genre.url);
+        }
+      }
+    }),
+  ];
 
 exports.genreDeleteGet = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: Genre Delete GET');

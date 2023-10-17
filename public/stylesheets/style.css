@@ -10,10 +10,12 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: var(--fondo) !important;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 
-header a {
+a {
   color: #eeeeee !important;
 }
 
@@ -55,9 +57,11 @@ main {
   color: var(--texto);
   background-color: var(--fondo);
   border-radius: 0 0 15px 15px;
+  min-height: 65vh;
 }
 
 .card {
+  padding-top: 12px !important;
   background-color: var(--secundario) !important;
 }
 
@@ -69,6 +73,33 @@ main {
 .btn-primary:hover {
   background-color: rgba(69, 176, 155, 0.2) !important;
   border: 1px solid white !important;
+}
+
+section {
+  color: var(--texto);
+  background-color: var(--primario);
+}
+
+section .button {
+  background: rgb(32, 47, 54);
+  background: linear-gradient(180deg, rgba(50, 58, 60, 0.5) 18%, rgba(83, 99, 101, 0.5) 78%);
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+section .button:hover {
+  animation: gradientTransition 150ms;
+  background: rgba(83, 101, 99, 0.2);
+  box-shadow: 0px 0px 5px rgba(197, 157, 46, 0.8);
+}
+
+form {
+  background-color: var(--secundario);
+}
+
+footer {
+  color: var(--texto);
+  background-color: var(--secundario);
 }
 
 @keyframes gradientTransition {
