@@ -29,6 +29,8 @@ router.get('/albums', albumController.albumList);
 
 // -------------------- ARTIST ROUTES -------------------- //
 
+router.get('/createartist', artistController.artistHomeGet);
+
 router.get('/artist/create', artistController.artistCreateGet);
 
 router.post('/artist/create', artistController.artistCreatePost);
