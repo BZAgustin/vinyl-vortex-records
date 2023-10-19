@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
-
+const { body, validationResult } = require("express-validator");
 const Artist = require("../models/artist");
+
 
 // Display all Artists
 exports.artistList = asyncHandler(async (req, res, next) => {
@@ -23,13 +24,64 @@ exports.artistDetail = asyncHandler(async (req, res, next) => {
   res.render("artistDetail", { title: "Artist Detail", artist });
 });
 
-exports.artistCreateGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Artist Create GET");
+exports.artistHomeGet = asyncHandler(async (req, res, next) => {
+  res.render('createArtist', { title: 'Artist/Band Creation' });
 });
 
-exports.artistCreatePost = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Artist Create POST");
+exports.artistCreateGet = asyncHandler(async (req, res, next) => {
+  res.render('artistForm', { title: 'Create Artist' });
 });
+
+exports.artistCreatePost = [
+  body('stageName')
+    .trim()
+    .isLength({ min: 2 })
+    .escape()
+    .withMessage('Stage name is required'),
+  body('birthName')
+    .trim()
+    .isLength({ min: 2 })
+    .escape()
+    .withMessage('Birth name is required'),
+  body('birthDate', 'Invalid date of birth')
+    .optional({ values: 'falsy' })
+    .isISO8601()
+    .toDate(),
+  body('deathDate', 'Invalid passing date')
+    .optional({ values: 'falsy' })
+    .isISO8601()
+    .toDate(),
+  
+    asyncHandler(async (req, res, next) => {
+      const errors = validationResult(req);
+
+      const artist = new Artist({
+        stageName: req.body.stageName,
+        birthName: req.body.birthName,
+        birthDate: req.body.birthDate,
+        deathDate: req.body.deathDate
+      });
+
+      if (!errors.isEmpty()) {
+        res.render('artistForm', {
+          title: 'Create Artist',
+          artist,
+          errors: errors.array(),
+        });
+        return;
+      } else {
+        const artistExists = await Artist.findOne({ stageName: req.body.stageName, birthName: req.body.birthName })
+                                         .collation({ locale: 'en', strength: 2 })
+                                         .exec();
+        if (artistExists) {
+          res.redirect(artistExists.url);
+        } else {
+          await artist.save();
+          res.redirect(artist.url);
+        }
+      }
+    })
+  ];
 
 exports.artistDeleteGet = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Artist Delete GET");
