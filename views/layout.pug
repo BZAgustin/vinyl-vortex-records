@@ -11,18 +11,19 @@ html
   body
     div(class="container-fluid p-0 h-100")
       header(class="row d-flex flex-column flex-md-row align-items-center p-3")
-        img(class="col-0 ml-5" src="/images/logo.png")
-        h1(class="col display-5 w-50") VINYL VORTEX
-        div(class="col d-flex flex-wrap justify-content-center justify-content-md-center")
-          a(href='/catalog', class="button py-2 px-4 mr-3 mb-3 mb-md-0") 
+        div(class="col-xl d-flex align-items-center justify-content-center mb-sm-3")
+          img(class="col-0 ml-5" src="/images/logo.png")
+          h1(class="col display-5 w-50") VINYL VORTEX  
+        div(class="col-xl d-flex flex-wrap justify-content-center")
+          a(href='/catalog', class="col-xl button text-center py-2 px-4 mb-3 mr-3") 
             p(class="h3") Catalog
-          a(href='/catalog/store', class="button py-2 px-4 mr-3 mb-3 mb-md-0") 
+          a(href='/catalog/store', class="col-xl button text-center py-2 px-4 mb-3 mr-3") 
             p(class="h3") Store
-          a(href='/catalog/albums', class="button py-2 px-4 mr-3 mb-3 mb-md-0")
+          a(href='/catalog/albums', class="col-xl button text-center py-2 px-4 mb-3 mr-3")
             p(class="h3") Albums
-          a(href='/catalog/artists', class="button py-2 px-4 mr-3 mb-3 mb-md-0") 
+          a(href='/catalog/artists', class="col-xl button text-center py-2 px-4 mb-3 mr-3") 
             p(class="h3") Artists
-          a(href='/catalog/genres', class="button py-2 px-4") 
+          a(href='/catalog/genres', class="col-xl button text-center py-2 px-4 mb-3 mr-3") 
             p(class="h3") Genres
 
 
@@ -33,14 +34,12 @@ html
       section(class="row p-5 text-center")
         .col
           h1 Help Us Grow Our Collection!
-          .d-flex.justify-content-center.p-5
-            a(href='/catalog/album/create', class="button py-2 px-4 mr-3 mb-3 mb-md-0") 
+          .row.d-flex.justify-content-center.p-5
+            a(href='/catalog/album/create', class="col-xl button py-2 px-4 mr-3 mb-3 mb-md-0") 
               p(class="h3") Add an Album
-            a(href='/catalog/artist/create', class="button py-2 px-4 mr-3 mb-3 mb-md-0") 
+            a(href='/catalog/createartist', class="col-xl button py-2 px-4 mr-3 mb-3 mb-md-0") 
               p(class="h3") Add an Artist
-            a(href='/catalog/band/create', class="button py-2 px-4 mr-3 mb-3 mb-md-0") 
-              p(class="h3") Add a Band
-            a(href='/catalog/genre/create', class="button py-2 px-4 mr-3 mb-3 mb-md-0") 
+            a(href='/catalog/genre/create', class="col-xl button py-2 px-4 mr-3 mb-3 mb-md-0") 
               p(class="h3") Add a Genre
 
       footer(class="row p-3 text-center")
