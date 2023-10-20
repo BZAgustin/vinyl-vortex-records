@@ -6,13 +6,7 @@ block content
       h1(class="text-center mb-4") #{title}
       div.form-group
         label(for='stageName') Stage Name:
-        input#name.form-control(type='text', placeholder='Artistic/Stage name' name='stageName' value=(undefined===artist ? '' : artist.stageName))
-        label(for='stageName') Birth Name:
-        input#name.form-control(type='text', placeholder='Birth name' name='birthName' value=(undefined===artist ? '' : artist.stageName))
-        label(for='stageName') Birth Date:
-        input#name.form-control(type='date', name='birthDate')
-        label(for='stageName') Passing Date:
-        input#name.form-control(type='date', name='deathDate')
+        input#name.form-control(type='text', placeholder='The Cranberries, Phil Collins, etc.' name='stageName' value=(undefined===artist ? '' : artist.stageName), required='true')
       button.btn.btn-primary(type='submit') Submit
 
     if errors

@@ -8,7 +8,7 @@ const AlbumSchema = new Schema({
           minlength: 1,
           maxlength: 100
         },
-  artist: { type: Schema.Types.ObjectId, ref: 'Band', required: true },
+  artist: { type: Schema.Types.ObjectId, ref: 'Artist', required: true },
   releaseDate: { type: Date, required: true },
   cover: { type: String },
   genre: [{ type: Schema.Types.ObjectId, ref: 'Genre' }],

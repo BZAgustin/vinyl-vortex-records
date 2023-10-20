@@ -24,42 +24,26 @@ exports.artistDetail = asyncHandler(async (req, res, next) => {
   res.render("artistDetail", { title: "Artist Detail", artist });
 });
 
-exports.artistHomeGet = asyncHandler(async (req, res, next) => {
-  res.render('createArtist', { title: 'Artist/Band Creation' });
-});
-
 exports.artistCreateGet = asyncHandler(async (req, res, next) => {
-  res.render('artistForm', { title: 'Create Artist' });
+  res.render('artistForm', { title: 'Add Artist/Band' });
 });
 
 exports.artistCreatePost = [
   body('stageName')
     .trim()
-    .isLength({ min: 2 })
+    .isLength({ min: 2, max: 60 })
     .escape()
     .withMessage('Stage name is required'),
-  body('birthName')
+  body('imageUrl')
     .trim()
-    .isLength({ min: 2 })
-    .escape()
-    .withMessage('Birth name is required'),
-  body('birthDate', 'Invalid date of birth')
-    .optional({ values: 'falsy' })
-    .isISO8601()
-    .toDate(),
-  body('deathDate', 'Invalid passing date')
-    .optional({ values: 'falsy' })
-    .isISO8601()
-    .toDate(),
+    .escape(),
   
     asyncHandler(async (req, res, next) => {
       const errors = validationResult(req);
 
       const artist = new Artist({
         stageName: req.body.stageName,
-        birthName: req.body.birthName,
-        birthDate: req.body.birthDate,
-        deathDate: req.body.deathDate
+        imageUrl: req.body.imageUrl
       });
 
       if (!errors.isEmpty()) {
@@ -70,7 +54,7 @@ exports.artistCreatePost = [
         });
         return;
       } else {
-        const artistExists = await Artist.findOne({ stageName: req.body.stageName, birthName: req.body.birthName })
+        const artistExists = await Artist.findOne({ stageName: req.body.stageName })
                                          .collation({ locale: 'en', strength: 2 })
                                          .exec();
         if (artistExists) {

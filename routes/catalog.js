@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const artistController = require('../controllers/artistController');
-const bandController = require('../controllers/bandController');
 const albumController = require('../controllers/albumController');
 const albumInstanceController = require('../controllers/albumInstanceController');
 const genreController = require('../controllers/genreController');
@@ -29,8 +28,6 @@ router.get('/albums', albumController.albumList);
 
 // -------------------- ARTIST ROUTES -------------------- //
 
-router.get('/createartist', artistController.artistHomeGet);
-
 router.get('/artist/create', artistController.artistCreateGet);
 
 router.post('/artist/create', artistController.artistCreatePost);
@@ -46,24 +43,6 @@ router.post('/artist/:id/update', artistController.artistUpdatePost);
 router.get('/artist/:id', artistController.artistDetail);
 
 router.get('/artists', artistController.artistList);
-
-// -------------------- BAND ROUTES -------------------- //
-
-router.get('/band/create', bandController.bandCreateGet);
-
-router.post('/band/create', bandController.bandCreatePost);
-
-router.get('/band/:id/delete', bandController.bandDeleteGet);
-
-router.post('/band/:id/delete', bandController.bandDeletePost);
-
-router.get('/band/:id/update', bandController.bandUpdateGet);
-
-router.post('/band/:id/update', bandController.bandUpdatePost);
-
-router.get('/band/:id', bandController.bandDetail);
-
-router.get('/bands', bandController.bandList);
 
 // -------------------- GENRE ROUTES -------------------- //
 

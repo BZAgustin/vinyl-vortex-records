@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 
-const album = require('../models/album');
 const AlbumInstance = require('../models/albumInstance');
 
 exports.albumInstanceList = asyncHandler(async (req, res, next) => {
