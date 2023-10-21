@@ -66,32 +66,73 @@ exports.albumCreatePost = [
   body('cover')
     .optional({ values: 'falsy' })
     .trim()
-    .escape(),
+    .isLength({ min: 5, max: 200 })
+    .escape()
+    .withMessage('URL length must be between 5 and 200 characters long'),
+  body('genre')
+    .optional({ values: 'falsy' })
+    .trim()
+    .isLength({ min: 1, max: 60 })
+    .escape()
+    .withMessage('Genre name must be between 1 and 60 characters long'),
+  body('label')
+    .optional( { values: 'falsy' })
+    .trim()
+    .isLength({ min: 1, max: 80 })
+    .escape()
+    .withMessage('Label name must be between 1 and 80 characters long'),
 
     asyncHandler(async (req, res, next) => {
       const errors = validationResult(req);
+      let coverURL = req.body.cover || '/images/albumDefaultImage.png';
+      let artist;
+      let genre;
 
-      const artist = new Album({
-        stageName: req.body.stageName,
-        imageUrl: req.body.imageUrl
+      const artistExists = await Artist.findOne( { stageName: req.body.artist })
+                                       .collation({ locale: 'en', strength: 2 })
+                                       .exec();
+      const genreExists = await Genre.findOne( { name: req.body.genre })
+                                     .collation({ locale: 'en', strength: 2 })
+                                     .exec();
+      if (!artistExists) {
+        artist = new Artist({ stageName: req.body.artist });
+        await artist.save();
+      } else {
+        artist = artistExists;
+      }
+
+      if (!genreExists) {
+        genre = new Genre({ name: req.body.genre });
+        await genre.save();
+      } else {
+        genre = genreExists;
+      }
+
+      const album = new Album({
+        title: req.body.title,
+        artist: artist,
+        releaseDate: req.body.releaseDate,
+        cover: coverURL,
+        genre: genre,
+        label: req.body.label
       });
 
       if (!errors.isEmpty()) {
         res.render('albumForm', {
           title: 'Add Album',
-          artist,
+          album,
           errors: errors.array(),
         });
         return;
       } else {
-        const artistExists = await Artist.findOne({ stageName: req.body.stageName })
-                                         .collation({ locale: 'en', strength: 2 })
-                                         .exec();
-        if (artistExists) {
-          res.redirect(artistExists.url);
+        const albumExists = await Album.findOne({ title: req.body.title, artist })
+                                       .collation({ locale: 'en', strength: 2 })
+                                       .exec();
+        if (albumExists) {
+          res.redirect(albumExists.url);
         } else {
-          await artist.save();
-          res.redirect(artist.url);
+          await album.save();
+          res.redirect(album.url);
         }
       }
     })
