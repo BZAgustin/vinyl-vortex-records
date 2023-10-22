@@ -18,9 +18,15 @@ exports.genreDetail = asyncHandler(async (req, res, next) => {
     Album.find({ genre: genreId }).exec()
   ]);
 
-  console.log(albumsWithGenre);
+  const albumsByGenre = await Genre.populate(albumsWithGenre, {
+    path: 'album',
+    populate: {
+      path: 'artist',
+      select: 'stageName',
+    }
+  });
 
-  res.render('genreDetail', { title: 'Genre Detail', genre, albumsWithGenre })
+  res.render('genreDetail', { title: 'Genre Detail', genre, albumsByGenre })
 });
 
 exports.genreCreateGet = asyncHandler(async (req, res, next) => {
