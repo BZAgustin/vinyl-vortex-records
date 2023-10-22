@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const albumInstanceSchema = new Schema({
   album: { type: Schema.Types.ObjectId, ref: 'Album', required: true },
   condition: { type: String, enum: ['New', 'Used'], required: true },
-  price: { type: Number },
+  price: { type: Number, required: true },
 });
 
 albumInstanceSchema.virtual('url').get(function() {
