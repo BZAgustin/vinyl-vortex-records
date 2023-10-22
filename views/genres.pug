@@ -3,10 +3,10 @@ extends layout
 block content 
   h1(class="text-center display-4 mb-4")= title 
 
-  div(class="container")
+  .container-fluid
     .row
       each genre in genreList
-        .col-md-4
+        .col-12.col-lg-6.col-xl-3
           .card.mb-4.d-flex.flex-column.align-items-center.justify-content-center.p-3
             .card-body.d-flex.flex-column.align-items-center
               h1(class="card-title") #{genre.name}

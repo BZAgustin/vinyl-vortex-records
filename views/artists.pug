@@ -3,12 +3,12 @@ extends layout
 block content 
   h1(class="text-center display-4 mb-4")= title 
 
-  div(class="container")
+  .container-fluid
     .row
       each artist in artistList
-        .col-md-4
+        .col-12.col-lg-6.col-xl-3
           .card.mb-4.d-flex.flex-column.align-items-center.p-3
-            img(class="card-img-top w-50", src="/images/artistDefaultImage.png", alt="Card image cap")
+            img(class="card-img-top w-75", src="/images/artistDefaultImage.png", alt="Card image cap")
             .card-body.d-flex.flex-column.align-items-center
               h2(class="card-title") #{artist.stageName}
               a(href=artist.url, class="btn btn-primary") View

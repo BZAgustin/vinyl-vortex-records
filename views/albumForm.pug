@@ -4,7 +4,7 @@ block content
   .container.d-flex.flex-column.align-items-center.justify-content-center.h-100
     form(method='POST' action='' class="d-flex flex-column align-items-center p-4 rounded shadow")
       h1(class="text-center mb-4") #{title}
-      div.form-group
+      div.form-group.d-flex.flex-column
         label(for='title') Title:
         input#name.form-control(type='text', name='title', placeholder="Album title", value=(undefined===album ? '' : album.title), required='true')
         label(for='artist') Artist:
@@ -17,7 +17,7 @@ block content
         input#name.form-control(type='text', name='genre', placeholder="Album genre(s) (comma separated)", value=(undefined===album ? '' : album.genre))
         label(for='label') Label:
         input#name.form-control(type='text', name='label', placeholder="Album record label", value=(undefined===album ? '' : album.label))
-        button.btn.btn-primary(type='submit') Submit
+        button.btn.btn-primary.mt-3.align-self-center(type='submit') Submit
 
     if errors
       ul
