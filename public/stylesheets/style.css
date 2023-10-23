@@ -96,6 +96,13 @@ form {
   background-color: var(--secundario);
 }
 
+input {
+  background-color: #d1ffe9 !important;
+  border-radius: 10px !important;
+  border: none !important;
+  outline: none !important;
+}
+
 footer {
   color: var(--texto);
   background-color: var(--secundario);
