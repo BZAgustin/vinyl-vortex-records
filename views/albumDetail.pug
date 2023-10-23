@@ -1,6 +1,13 @@
 extends layout 
 
 block content 
-
-  h1 #{album.title}
-  p #{album.artist.stageName}
+  .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
+    img(src=album.cover, alt="Cover")
+    h1 #{album.title}
+    p Artist: #{album.artist.stageName}
+    p Released: #{album.releaseDate}
+    p Label: #{album.label}
+    a(href=album.url+'/update')
+      button.btn.btn-primary.mt-3.align-self-center Update
+    a(href=album.url+'/delete')
+      button.btn.btn-primary.mt-3.align-self-center Delete

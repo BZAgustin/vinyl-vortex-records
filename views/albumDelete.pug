@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
+    h1 #{title}: #{album.title}
+
+    p Do you really want to delete this album?
+
+      form.bg-transparent(method='POST' action='')
+        div.form-group
+          input#albumId.form-control(type='hidden',name='albumId', required='true', value=album._id)
+
+        button.btn.btn-primary(type='submit') Delete
