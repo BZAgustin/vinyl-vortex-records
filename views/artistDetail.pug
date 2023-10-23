@@ -1,5 +1,7 @@
 extends layout 
 
 block content 
-
-  h1 #{artist.stageName}
+  .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
+    h1 #{artist.stageName}
+    a(href=artist.url+'/delete')
+      button.btn.btn-primary.mt-3.align-self-center Delete Artist

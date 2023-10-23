@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .container.d-flex.flex-column.align-items-center.justify-content-center.h-100
+    form(method='POST' action='' class="d-flex flex-column align-items-center p-4 rounded shadow")
+      h1=title
+      div.form-group
+        label(for='album') Album:
+        select#album.form-control(type='select' placeholder='Select album' name='album' required='true')
+          - albumList.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+          for album in albumList
+            option(value=album._id, selected=(selectedAlbum==album._id.toString() ? 'selected' : false) ) #{album.title}
+
+      div.form-group
+        label(for='condition') Condition:
+        select#condition.form-control(type='select' placeholder='Select condition' name='condition' required='true' )
+          option(value='New' selected=(undefined===albumInstance || albumInstance.condition!='New' ? false:'selected')) New
+          option(value='Used' selected=(undefined===albumInstance || albumInstance.condition!='Used' ? false:'selected')) Used
+
+      div.form-group
+        label(for='price') Price:
+        input#price.form-control(type='number' name='price' required='true' min='1' max='999' value=(undefined===albumInstance ? '' : albumInstance.price))
+
+      button.btn.btn-primary(type='submit') Submit
+
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
