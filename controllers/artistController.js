@@ -1,7 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
-const Artist = require("../models/artist");
 
+const Artist = require("../models/artist");
+const Album = require("../models/album");
 
 // Display all Artists
 exports.artistList = asyncHandler(async (req, res, next) => {
@@ -68,11 +69,39 @@ exports.artistCreatePost = [
   ];
 
 exports.artistDeleteGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Artist Delete GET");
+  const [artist, allAlbumsByArtist] = await Promise.all([
+    Artist.findById(req.params.id).exec(),
+    Album.find({ artist: req.params.id }, "title artist").exec(),
+  ]);
+
+  if (artist === null) {
+    res.redirect("/catalog/artists");
+  }
+
+  res.render("artistDelete", {
+    title: "Delete Artist",
+    artist,
+    artistAlbums: allAlbumsByArtist,
+  });
 });
 
 exports.artistDeletePost = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Artist Delete POST");
+  const [artist, allAlbumsByArtist] = await Promise.all([
+    Artist.findById(req.params.id).exec(),
+    Album.find({ artist: req.params.id }, "title summary").exec(),
+  ]);
+
+  if (allAlbumsByArtist.length > 0) {
+    res.render("artistDelete", {
+      title: "Delete artist",
+      artist: artist,
+      artistAlbums: allAlbumsByArtist,
+    });
+    return;
+  } else {
+    await Artist.findByIdAndRemove(req.body.artistId);
+    res.redirect("/catalog/artists");
+  }
 });
 
 exports.artistUpdateGet = asyncHandler(async (req, res, next) => {
