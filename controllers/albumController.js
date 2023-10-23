@@ -146,13 +146,35 @@ exports.albumDeletePost = asyncHandler(async (req, res, next) => {
 });
 
 exports.albumUpdateGet = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Album Update GET');
+  const [album, allArtists, allGenres] = await Promise.all([
+    Album.findById(req.params.id).populate("artist").populate("genre").exec(),
+    Artist.find().exec(),
+    Genre.find().exec(),
+  ]);
+
+  if (album === null) {
+    const err = new Error("album not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  for (const genre of allGenres) {
+    for (const albumG of album.genre) {
+      if (genre._id.toString() === albumG._id.toString()) {
+        genre.checked = "true";
+      }
+    }
+  }
+
+  res.render("albumForm", {
+    title: "Update Album",
+    artists: allArtists,
+    genres: allGenres,
+    album
+  });
 });
 
 exports.albumUpdatePost = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: Album Update POST');
 });
-
-
-
 
