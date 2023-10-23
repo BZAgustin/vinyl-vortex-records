@@ -35,9 +35,9 @@ exports.albumInstanceDetail = asyncHandler(async (req, res, next) => {
 exports.albumInstanceCreateGet = asyncHandler(async (req, res, next) => {
   const allAlbums = await Album.find({}, "title").exec();
 
-  res.render('albumInstanceCreate', {
+  res.render('albumInstanceForm', {
     title: 'Add Album Copy',
-    albums: allAlbums,
+    albumList: allAlbums,
   });
 });
 
@@ -51,7 +51,7 @@ exports.albumInstanceCreatePost = [
     .trim()
     .isLength({ min: 2, max: 60 })
     .escape()
-    .withMessage('Artist is required'),
+    .withMessage('Condition is required'),
   body('price', 'Invalid price')
     .isNumeric()
     .escape()
