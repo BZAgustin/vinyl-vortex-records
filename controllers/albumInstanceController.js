@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const { body, validationResult } = require("express-validator");
+const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
 const AlbumInstance = require('../models/albumInstance');
 const Album = require('../models/album');
@@ -33,7 +33,7 @@ exports.albumInstanceDetail = asyncHandler(async (req, res, next) => {
 });
 
 exports.albumInstanceCreateGet = asyncHandler(async (req, res, next) => {
-  const allAlbums = await Album.find({}, "title").exec();
+  const allAlbums = await Album.find({}, 'title').exec();
 
   res.render('albumInstanceForm', {
     title: 'Add Album Copy',

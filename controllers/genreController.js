@@ -1,5 +1,5 @@
-const asyncHandler = require("express-async-handler");
-const { body, validationResult } = require("express-validator");
+const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
 const Genre = require('../models/genre');
 const Album = require('../models/album')
@@ -7,7 +7,7 @@ const Album = require('../models/album')
 exports.genreList = asyncHandler(async (req, res, next) => {
   const genres = await Genre.find({}).exec();
   
-  res.render('genres', { title: "Genres", genreList: genres });
+  res.render('genres', { title: 'Genres', genreList: genres });
 });
 
 exports.genreDetail = asyncHandler(async (req, res, next) => {

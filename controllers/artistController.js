@@ -1,14 +1,13 @@
-const asyncHandler = require("express-async-handler");
-const { body, validationResult } = require("express-validator");
+const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
-const Artist = require("../models/artist");
-const Album = require("../models/album");
+const Artist = require('../models/artist');
+const Album = require('../models/album');
 
-// Display all Artists
 exports.artistList = asyncHandler(async (req, res, next) => {
-  const allArtists = await Artist.find({}, "stageName").exec();
+  const allArtists = await Artist.find({}, 'stageName').exec();
 
-  res.render('artists', { title: "Artists", artistList: allArtists })
+  res.render('artists', { title: 'Artists', artistList: allArtists })
 });
 
 exports.artistDetail = asyncHandler(async (req, res, next) => {
@@ -17,12 +16,12 @@ exports.artistDetail = asyncHandler(async (req, res, next) => {
   const artist = await Artist.findById(artistId).exec();
 
   if (!artist) {
-    const err = new Error("Artist not found");
+    const err = new Error('Artist not found');
     err.status = 404;
     return next(err);
   }
 
-  res.render("artistDetail", { title: "Artist Detail", artist });
+  res.render('artistDetail', { title: 'Artist Detail', artist });
 });
 
 exports.artistCreateGet = asyncHandler(async (req, res, next) => {
@@ -71,15 +70,15 @@ exports.artistCreatePost = [
 exports.artistDeleteGet = asyncHandler(async (req, res, next) => {
   const [artist, allAlbumsByArtist] = await Promise.all([
     Artist.findById(req.params.id).exec(),
-    Album.find({ artist: req.params.id }, "title artist").exec(),
+    Album.find({ artist: req.params.id }, 'title artist').exec(),
   ]);
 
   if (artist === null) {
-    res.redirect("/catalog/artists");
+    res.redirect('/catalog/artists');
   }
 
-  res.render("artistDelete", {
-    title: "Delete Artist",
+  res.render('artistDelete', {
+    title: 'Delete Artist',
     artist,
     artistAlbums: allAlbumsByArtist,
   });
@@ -88,26 +87,26 @@ exports.artistDeleteGet = asyncHandler(async (req, res, next) => {
 exports.artistDeletePost = asyncHandler(async (req, res, next) => {
   const [artist, allAlbumsByArtist] = await Promise.all([
     Artist.findById(req.params.id).exec(),
-    Album.find({ artist: req.params.id }, "title summary").exec(),
+    Album.find({ artist: req.params.id }, 'title summary').exec(),
   ]);
 
   if (allAlbumsByArtist.length > 0) {
-    res.render("artistDelete", {
-      title: "Delete artist",
+    res.render('artistDelete', {
+      title: 'Delete artist',
       artist: artist,
       artistAlbums: allAlbumsByArtist,
     });
     return;
   } else {
     await Artist.findByIdAndRemove(req.body.artistId);
-    res.redirect("/catalog/artists");
+    res.redirect('/catalog/artists');
   }
 });
 
 exports.artistUpdateGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Artist Update GET");
+  res.send('NOT IMPLEMENTED: Artist Update GET');
 });
 
 exports.artistUpdatePost = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Artist Update POST");
+  res.send('NOT IMPLEMENTED: Artist Update POST');
 });
