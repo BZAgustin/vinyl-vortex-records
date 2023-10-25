@@ -7,15 +7,15 @@ const Album = require('../models/album');
 exports.albumInstanceList = asyncHandler(async (req, res, next) => {
   const albumInstances = await AlbumInstance.find({}).exec();
 
-  const albumsInStock = await AlbumInstance.populate(albumInstances, {
+  const albumDetails = await AlbumInstance.populate(albumInstances, {
     path: 'album',
     populate: {
       path: 'artist',
       select: 'stageName',
-    },
+    }
   });
 
-  res.render('store', { title: 'Store', albumInstanceList: albumsInStock })
+  res.render('store', { title: 'Store', albumsInStock: albumDetails });
 });
 
 exports.albumInstanceDetail = asyncHandler(async (req, res, next) => {
