@@ -5,7 +5,7 @@ block content
 
   .container-fluid
     .row
-      each albumInstance in albumInstanceList
+      each albumInstance in albumsInStock
         .col-12.col-lg-6.col-xl-3
           .card.mb-4.d-flex.flex-column.align-items-center.justify-content-center.p-3
             img(class="card-img-top w-100", src=albumInstance.album.cover, alt="Card image cap")
@@ -15,4 +15,4 @@ block content
               a(href=albumInstance.url, class="btn btn-primary") View
 
       else
-        p There are no artists.
+        p There are no albums for sale.
