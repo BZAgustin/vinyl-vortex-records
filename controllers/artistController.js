@@ -87,7 +87,7 @@ exports.artistDeleteGet = asyncHandler(async (req, res, next) => {
 exports.artistDeletePost = asyncHandler(async (req, res, next) => {
   const [artist, allAlbumsByArtist] = await Promise.all([
     Artist.findById(req.params.id).exec(),
-    Album.find({ artist: req.params.id }, 'title summary').exec(),
+    Album.find({ artist: req.params.id }, 'title artist').exec(),
   ]);
 
   if (allAlbumsByArtist.length > 0) {
