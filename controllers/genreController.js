@@ -66,11 +66,31 @@ exports.genreCreatePost = [
   ];
 
 exports.genreDeleteGet = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Genre Delete GET');
+  const [genre, albumsByGenre] = await Promise.all([
+    Genre.findById(req.params.id).exec(),
+    Album.find({ genre: req.params.id }).exec()
+  ]);
+
+  res.render('genreDelete', { title: 'Delete Genre', genre, albumsByGenre });
 });
 
 exports.genreDeletePost = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Genre Delete POST');
+  const [genre, albumsByGenre] = await Promise.all([
+    Genre.findById(req.params.id).exec(),
+    Album.find({ genre: req.params.id }).exec()
+  ]);
+
+  if (albumsByGenre.length > 0) {
+    res.render('genreDelete', {
+      title: 'Delete genre',
+      genre,
+      albumsByGenre,
+    });
+    return;
+  } else {
+    await Genre.findByIdAndRemove(req.body.genreId);
+    res.redirect('/catalog/genres');
+  }
 });
 
 exports.genreUpdateGet = asyncHandler(async (req, res, next) => {
