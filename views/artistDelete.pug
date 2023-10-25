@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
+  .container-fluid.h-100.d-flex.flex-column.justify-content-center.align-items-center
     h1 #{title}: #{artist.stageName}
     if artistAlbums.length
 
@@ -16,6 +16,9 @@ block content
               .card-body.d-flex.flex-column.align-items-center
                 h2(class="card-title") #{album.title}
                 h6(class="card-title") #{album.artist.stageName}
+      .row.d-flex.justify-content-center
+        a(href='/catalog')
+          button.btn.btn-primary.mt-3.mr-3 Go Back
 
     else
       p Do you really want to delete this artist?
