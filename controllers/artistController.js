@@ -104,9 +104,46 @@ exports.artistDeletePost = asyncHandler(async (req, res, next) => {
 });
 
 exports.artistUpdateGet = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Artist Update GET');
+  const artist = await Artist.findById(req.params.id).exec();
+
+  res.render('artistForm', { title: 'Update Artist', artist });
 });
 
-exports.artistUpdatePost = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Artist Update POST');
-});
+exports.artistUpdatePost = [
+  body('stageName')
+  .trim()
+  .isLength({ min: 2, max: 60 })
+  .escape()
+  .withMessage('Stage name is required'),
+body('imageUrl')
+  .trim()
+  .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+      const artist = new Artist({
+        stageName: req.body.stageName,
+        imageUrl: req.body.imageUrl,
+        _id: req.params.id
+      });
+
+      if (!errors.isEmpty()) {
+        res.render('artistForm', {
+          title: 'Create Artist',
+          artist,
+          errors: errors.array(),
+        });
+        return;
+      } else {
+        const artistExists = await Artist.findOne({ stageName: req.body.stageName })
+                                         .collation({ locale: 'en', strength: 2 })
+                                         .exec();
+        if (artistExists) {
+          res.redirect(artistExists.url);
+        } else {
+          const updatedArtist = await Artist.findByIdAndUpdate(req.params.id, artist, {});
+          res.redirect(updatedArtist.url);
+        }
+      }
+})]

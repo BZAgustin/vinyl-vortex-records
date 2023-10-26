@@ -94,9 +94,39 @@ exports.genreDeletePost = asyncHandler(async (req, res, next) => {
 });
 
 exports.genreUpdateGet = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Genre Update GET');
+  const genre = await Genre.findById(req.params.id).exec();
+
+  res.render('genreForm', { title: 'Update Genre', genre });
 });
 
-exports.genreUpdatePost = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Genre Update POST');
-});
+exports.genreUpdatePost = [
+body('name', 'Genre name must contain at least 2 characters')
+  .trim()
+  .isLength({ min: 2 })
+  .escape(),
+
+asyncHandler(async (req, res, next) => {
+  const errors = validationResult(req);
+
+  const genre = new Genre({ name: req.body.name, _id: req.params.id });
+
+  if(!errors.isEmpty()) {
+    res.render('genreForm', {
+      title: 'Add Genre',
+      genre,
+      errors: errors.array()
+    });
+    return;
+  } else {
+    const genreExists = await Genre.findOne({ name: req.body.name })
+                                   .collation({ locale: 'en', strength: 2 })
+                                   .exec();
+    if (genreExists) {
+      res.redirect(genreExists.url);
+    } else {
+      const updatedGenre = await Genre.findByIdAndUpdate(req.params.id, genre, {});
+      res.redirect(updatedGenre.url);
+    }
+  }
+}),
+];
