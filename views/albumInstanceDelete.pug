@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
+    h1 #{title}: #{albumInstance.album.title}
+
+    p Do you want to buy this album copy?
+
+      form.bg-transparent(method='POST' action='')
+        div.form-group
+          input#albumInstanceId.form-control(type='hidden',name='albumInstanceId', required='true', value=albumInstance._id)
+
+        button.btn.btn-primary(type='submit') Buy

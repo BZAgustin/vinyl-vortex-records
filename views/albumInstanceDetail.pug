@@ -6,3 +6,8 @@ block content
     h2 #{albumDetail.album.artist.stageName}
     h3 Condition: #{albumDetail.condition}
     h3 Price: $#{albumDetail.price}
+
+    a(href=albumDetail.url+'/update')
+      button.btn.btn-primary.mt-3.mr-3 Update
+    a(href=albumDetail.url+'/delete')
+      button.btn.btn-primary.mt-3 Buy

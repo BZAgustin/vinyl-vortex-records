@@ -3,5 +3,7 @@ extends layout
 block content 
   .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
     h1 #{artist.stageName}
+    a(href=artist.url+'/update')
+      button.btn.btn-primary.mt-3.align-self-center Update
     a(href=artist.url+'/delete')
-      button.btn.btn-primary.mt-3.align-self-center Delete Artist
+      button.btn.btn-primary.mt-3.align-self-center Delete
