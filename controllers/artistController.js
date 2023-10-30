@@ -13,7 +13,10 @@ exports.artistList = asyncHandler(async (req, res, next) => {
 exports.artistDetail = asyncHandler(async (req, res, next) => {
   const artistId = req.params.id;
 
-  const artist = await Artist.findById(artistId).exec();
+  const [artist, albumsByArtist] = await Promise.all([
+    Artist.findById(artistId).exec(),
+    Album.find({ artist: req.params.id }).exec()
+  ]);
 
   if (!artist) {
     const err = new Error('Artist not found');
@@ -21,7 +24,7 @@ exports.artistDetail = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render('artistDetail', { title: 'Artist Detail', artist });
+  res.render('artistDetail', { title: 'Artist Detail', artist, albumsByArtist });
 });
 
 exports.artistCreateGet = asyncHandler(async (req, res, next) => {
@@ -70,7 +73,7 @@ exports.artistCreatePost = [
 exports.artistDeleteGet = asyncHandler(async (req, res, next) => {
   const [artist, allAlbumsByArtist] = await Promise.all([
     Artist.findById(req.params.id).exec(),
-    Album.find({ artist: req.params.id }, 'title artist').exec(),
+    Album.find({ artist: req.params.id }).populate('artist').exec(),
   ]);
 
   if (artist === null) {
@@ -146,4 +149,4 @@ body('imageUrl')
           res.redirect(updatedArtist.url);
         }
       }
-})]
+})];
