@@ -1,9 +1,23 @@
 extends layout 
 
 block content 
-  .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
-    h1 #{artist.stageName}
-    a(href=artist.url+'/update')
-      button.btn.btn-primary.mt-3.align-self-center Update
-    a(href=artist.url+'/delete')
-      button.btn.btn-primary.mt-3.align-self-center Delete
+  h1(class="text-center") Albums by #{artist.stageName}
+
+  div(class="container")
+    .row
+      each album in albumsByArtist
+        .col-md-4
+          .card.d-flex.flex-column.align-items-center.justify-content-center.p-3.pb-0
+            img(class="card-img-top w-100", src=album.cover, alt="Card image cap")
+            .card-body.d-flex.flex-column.align-items-center
+              h2(class="card-title") #{album.title}
+              h6(class="card-title") #{album.artist.stageName}
+              a(href=album.url, class="btn btn-primary") View
+
+      else
+        h2(class="text-center p-5") No associated albums so far!
+    .row.d-flex.justify-content-center
+      a(href=artist.url+'/update')
+        button.btn.btn-primary.mt-3.mr-3 Update
+      a(href=artist.url+'/delete')
+        button.btn.btn-danger.mt-3 Delete
