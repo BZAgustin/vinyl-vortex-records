@@ -8,17 +8,17 @@ block content
       p #[strong Delete the following albums before attempting to delete this genre.]
 
       .container-fluid
-      .row
-        each album in albumsByGenre
-          .col-12.col-lg-6.col-xl-3
-            .card.d-flex.flex-column.align-items-center.justify-content-center.p-3.mb-4
-              img(class="card-img-top w-100", src=album.cover, alt="Card image cap")
-              .card-body.d-flex.flex-column.align-items-center
-                h2(class="card-title") #{album.title}
-                h6(class="card-title") #{album.artist.stageName}
-      .row.d-flex.justify-content-center
-        a(href='/catalog')
-          button.btn.btn-primary.mt-3.mr-3 Go Back
+        .row
+          each album in albumsByGenre
+            .col-12.col-lg-6.col-xl-3
+              .card.d-flex.flex-column.align-items-center.justify-content-center.p-3.mb-4
+                img(class="card-img-top w-100", src=album.cover, alt="Card image cap")
+                .card-body.d-flex.flex-column.align-items-center
+                  h2(class="card-title") #{album.title}
+                  h6(class="card-title") #{album.artist.stageName}
+        .row.d-flex.justify-content-center
+          a(href='/catalog/genres')
+            button.btn.btn-primary.mt-3.mr-3 Go Back
     else
       p Do you really want to delete this genre?
 
@@ -26,4 +26,4 @@ block content
         div.form-group
           input#genreId.form-control(type='hidden',name='genreId', required='true', value=genre._id)
 
-        button.btn.btn-primary(type='submit') Delete
+        button.btn.btn-danger(type='submit') Delete
