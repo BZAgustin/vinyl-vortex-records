@@ -150,4 +150,4 @@ exports.albumInstanceUpdatePost = [
         res.redirect(albumInstance.url);
       }
     })
-]
+];
