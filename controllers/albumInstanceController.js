@@ -19,7 +19,7 @@ exports.albumInstanceList = asyncHandler(async (req, res, next) => {
 });
 
 exports.albumInstanceDetail = asyncHandler(async (req, res, next) => {
-  const albumInstance = await AlbumInstance.findById(req.params.id).exec();
+  const albumInstance = await AlbumInstance.findById(req.params.id).populate('album').exec();
 
   const albumDetail = await AlbumInstance.populate(albumInstance, {
     path: 'album',
