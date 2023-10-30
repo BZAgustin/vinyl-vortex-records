@@ -93,7 +93,7 @@ main {
 
 section {
   color: var(--texto);
-  background-color: var(--primario);
+  background-color: var(--secundario);
 }
 
 section .button {
