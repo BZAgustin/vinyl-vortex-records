@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { format } = require('date-fns');
 
 const {Schema} = mongoose;
 
@@ -17,6 +18,10 @@ const AlbumSchema = new Schema({
 
 AlbumSchema.virtual('url').get(function() {
   return `/catalog/album/${this._id}`;
+});
+
+AlbumSchema.virtual('releaseDateString').get(function() {
+  return format(this.releaseDate, 'dd/MM/yy');
 });
 
 const Album = mongoose.model('Album', AlbumSchema);
