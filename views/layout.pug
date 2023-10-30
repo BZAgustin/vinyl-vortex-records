@@ -17,7 +17,7 @@ html
         div(class="col-xl d-flex flex-wrap justify-content-center" id="navContainer")
           a(href='/catalog', class="col-xl button d-flex flex-column justify-content-center align-items-center py-2 px-4 mb-3 mr-3") 
             img(class="icon", src='/images/icons/homeIcon.png')
-            h3(class="m-0") Catalog
+            h3(class="m-0") Home
           a(href='/catalog/store', class="col-xl button d-flex flex-column justify-content-center align-items-center text-center py-2 px-4 mb-3 mr-3")
             img(class="icon", src='/images/icons/storeIcon.png')
             span(class="h3 m-0") Store
@@ -32,7 +32,7 @@ html
             span(class="h3 m-0") Genres
 
 
-      main(class="row p-5")
+      main(class="row pt-5 pb-5")
         .col    
           block content
 
@@ -40,14 +40,18 @@ html
         .col
           h1 Help Us Grow Our Collection!
           .row.d-flex.justify-content-center.p-5
-            a(href='/catalog/album/create', class="col-12.col-lg-3 button py-2 px-4 mr-3 mb-3 mb-md-0") 
-              p(class="h3") Add an Album
-            a(href='/catalog/albuminstance/create', class="col-12.col-lg-3 button py-2 px-4 mr-3 mb-3 mb-md-0") 
-              p(class="h3") Add a Copy
-            a(href='/catalog/artist/create', class="col-12.col-lg-3 button py-2 px-4 mr-3 mb-3 mb-md-0") 
-              p(class="h3") Add an Artist
-            a(href='/catalog/genre/create', class="col-12.col-lg-3 button py-2 px-4 mr-3 mb-3 mb-md-0") 
-              p(class="h3") Add a Genre
+            a(href='/catalog/album/create', class="col-12.col-lg-3 button d-flex align-items-center py-2 px-4 mr-3 mb-3 mb-md-0")
+              img(class="icon mr-2", src='/images/icons/albumIcon.png') 
+              p(class="h3 mb-0") Add an Album
+            a(href='/catalog/albuminstance/create', class="col-12.col-lg-3 d-flex align-items-center button py-2 px-4 mr-3 mb-3 mb-md-0") 
+              img(class="icon mr-2", src='/images/icons/albumIcon.png')
+              p(class="h3 mb-0") Add a Copy
+            a(href='/catalog/artist/create', class="col-12.col-lg-3 d-flex align-items-center button py-2 px-4 mr-3 mb-3 mb-md-0") 
+              img(class="icon mr-2", src='/images/icons/artistIcon.png')
+              p(class="h3 mb-0") Add an Artist
+            a(href='/catalog/genre/create', class="col-12.col-lg-3 d-flex align-items-center button py-2 px-4 mr-3 mb-3 mb-md-0") 
+              img(class="icon mr-2", src='/images/icons/genreIcon.png')
+              p(class="h3 mb-0") Add a Genre
 
       footer(class="row p-3 text-center")
         h1(class="col") VV Inc.
