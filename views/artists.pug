@@ -7,7 +7,7 @@ block content
     .row
       each artist in artistList
         .col-12.col-lg-6.col-xl-3
-          .card.mb-4.d-flex.flex-column.align-items-center.p-3
+          .card.mb-4.d-flex.flex-column.align-items-center.p-3.shadow
             img(class="card-img-top w-75", src="/images/artistDefaultImage.png", alt="Card image cap")
             .card-body.d-flex.flex-column.align-items-center
               h2(class="card-title") #{artist.stageName}
