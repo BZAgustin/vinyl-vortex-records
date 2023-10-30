@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Nunito+Sans:wght@300;500&display=swap');
+
 :root {
   --texto: rgb(232, 236, 237);
   --fondo: rgb(11, 14, 14);
@@ -7,13 +9,15 @@
   --acento-2: rgb(69, 176, 155);
 }
 
+* {
+  font-family: 'Nunito Sans', sans-serif !important;
+}
+
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: var(--fondo) !important;
   height: 100vh;
   overflow-x: hidden;
 }
-
 
 a {
   color: #eeeeee !important;
@@ -47,9 +51,17 @@ header img {
   height: 48px;
 }
 
+#navContainer img {
+  height: 24px;
+}
+
 header h1 {
   margin: 0;
-  font-size: 56px;
+  font-size: 64px;
+}
+
+.jolly-font {
+  font-family: 'Jolly Lodger', sans-serif !important;
 }
 
 main {
@@ -70,7 +82,12 @@ main {
 }
 
 .btn-primary:hover {
-  background-color: rgba(69, 176, 155, 0.2) !important;
+  background-color: rgba(64, 219, 188, 0.35) !important;
+  border: 1px solid white !important;
+}
+
+.btn-danger:hover {
+  background-color: rgba(221, 37, 37, 0.35) !important;
   border: 1px solid white !important;
 }
 
