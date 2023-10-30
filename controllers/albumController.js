@@ -20,7 +20,7 @@ exports.index = asyncHandler(async (req, res, next) => {
   ]);
 
   res.render('index', { 
-    title: 'Catalog',
+    title: 'Home',
     albumCount: numAlbums,
     stockCount: numAlbumInstances,
     artistCount: numArtists, 
