@@ -2,12 +2,17 @@ extends layout
 
 block content 
   .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
-    h1 #{albumDetail.album.title}
-    h2 #{albumDetail.album.artist.stageName}
-    h3 Condition: #{albumDetail.condition}
-    h3 Price: $#{albumDetail.price}
+    .row
+      .col-12.card.d-flex.flex-column.align-items-center.p-4
+        img(class="card-img-top w-100 mb-4", src=albumDetail.album.cover, alt="Card image cap")
+        h1 #{albumDetail.album.title}
+        h4 #{albumDetail.album.artist.stageName}
+        h5 Condition: #{albumDetail.condition}
+        h5 Price: $#{albumDetail.price}
 
-    a(href=albumDetail.url+'/update')
-      button.btn.btn-primary.mt-3.mr-3 Update
-    a(href=albumDetail.url+'/delete')
-      button.btn.btn-primary.mt-3 Buy
+    .row 
+      .col-12 
+        a(href=albumDetail.url+'/update')
+          button.btn.btn-primary.mt-3.mr-3 Update
+        a(href=albumDetail.url+'/delete')
+          button.btn.btn-primary.mt-3 Buy
