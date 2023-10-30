@@ -68,7 +68,7 @@ exports.genreCreatePost = [
 exports.genreDeleteGet = asyncHandler(async (req, res, next) => {
   const [genre, albumsByGenre] = await Promise.all([
     Genre.findById(req.params.id).exec(),
-    Album.find({ genre: req.params.id }).exec()
+    Album.find({ genre: req.params.id }).populate('artist').exec()
   ]);
 
   res.render('genreDelete', { title: 'Delete Genre', genre, albumsByGenre });
@@ -77,7 +77,7 @@ exports.genreDeleteGet = asyncHandler(async (req, res, next) => {
 exports.genreDeletePost = asyncHandler(async (req, res, next) => {
   const [genre, albumsByGenre] = await Promise.all([
     Genre.findById(req.params.id).exec(),
-    Album.find({ genre: req.params.id }).exec()
+    Album.find({ genre: req.params.id }).populate('artist').exec()
   ]);
 
   if (albumsByGenre.length > 0) {
