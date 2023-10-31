@@ -52,12 +52,10 @@ exports.albumCreatePost = [
   body('title')
     .trim()
     .isLength({ min: 1, max: 100 })
-    .escape()
     .withMessage('Title is required'),
   body('artist')
     .trim()
     .isLength({ min: 2, max: 60 })
-    .escape()
     .withMessage('Artist is required'),
   body('releaseDate', 'Invalid release date')
     .optional({ values: 'falsy' })
