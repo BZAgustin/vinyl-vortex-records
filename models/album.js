@@ -11,7 +11,7 @@ const AlbumSchema = new Schema({
         },
   artist: { type: Schema.Types.ObjectId, ref: 'Artist', required: true },
   releaseDate: { type: Date, required: true },
-  cover: { type: String, minLength: 5, maxLength: 200 },
+  cover: { type: String, minLength: 5, maxLength: 2000 },
   genre: [{ type: Schema.Types.ObjectId, ref: 'Genre' }],
   label: { type: String, minLength: 1, maxLength: 80 }
 });

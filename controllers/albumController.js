@@ -64,8 +64,8 @@ exports.albumCreatePost = [
   body('cover')
     .optional({ values: 'falsy' })
     .trim()
-    .isLength({ min: 5, max: 200 })
-    .withMessage('URL length must be between 5 and 200 characters long'),
+    .isLength({ min: 5, max: 2000 })
+    .withMessage('URL length must be between 5 and 2000 characters long'),
   body('genre')
     .optional({ values: 'falsy' })
     .trim()
