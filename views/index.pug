@@ -3,14 +3,39 @@ extends layout
 block content
   h1(class="text-center jolly-font display-4") Welcome
 
-  .container-fluid.p-5
-    p - Delve into a curated selection of #{albumCount} albums, each a musical journey waiting to be discovered.
-
-    p - Our #{artistCount} talented artists and bands have contributed their artistry, ensuring a diverse soundscape for every taste.
-
-    p - Discover #{genreCount} unique genres that define the soul of each album and artist, from timeless classics to contemporary innovations.
-
-    p - Browse #{stockCount} distinct albums for sale, each with its own story to tell, waiting to find a home in your collection.
-
-    p - Vinyl Vortex is more than just a store; it's a haven for music enthusiasts like you. Start your musical adventure here.
+  .container-fluid.p-4.h-100
+    .row
+      .col-12.col-lg.card.d-flex.flex-row.align-items-center.m-2.pb-3
+        .w-100
+          .d-flex.align-items-center
+            img(class="index-icon mr-2 mb-1", src='/images/store.png', alt='store') 
+            h2.display-4.index-card-title Store
+          h5 #{stockCount} copies available
+        a(href='/catalog/store' class="d-flex justify-content-center align-items-center")
+          button.btn.btn-primary.mt-3.mr-3 Browse
+      .col-12.col-lg.card.d-flex.flex-row.align-items-center.m-2.pb-3
+        .w-100
+          .d-flex.align-items-center
+            img(class="index-icon mr-2 mb-1", src='/images/album.png', alt='albums') 
+            h2.display-4.index-card-title Albums
+          h5 #{albumCount} unique albums in our records
+        a(href='/catalog/albums' class="d-flex justify-content-center align-items-center")
+          button.btn.btn-primary.mt-3.mr-3 Browse
+    .row
+      .col-12.col-lg.card.d-flex.flex-row.align-items-center.m-2.pb-3
+        .w-100
+          .d-flex.align-items-center
+            img(class="index-icon mr-2 mb-2", src='/images/artist.png', alt='artists')
+            h2.display-4.index-card-title Artists
+          h5 #{artistCount} different artists
+        a(href='/catalog/Artists' class="d-flex justify-content-center align-items-center")
+          button.btn.btn-primary.mt-3.mr-3 Browse
+      .col-12.col-lg.card.d-flex.flex-row.align-items-center.m-2.pb-3
+        .w-100
+          .d-flex.align-items-center
+            img(class="index-icon mr-2 mb-2", src='/images/genre.png', alt='genres')
+            h2.display-4.index-card-title Genres
+          h5 #{genreCount} genres to choose from
+        a(href='/catalog/genres' class="d-flex justify-content-center align-items-center")
+          button.btn.btn-primary.mt-3.mr-3 Browse
     

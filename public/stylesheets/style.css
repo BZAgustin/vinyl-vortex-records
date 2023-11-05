@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Nunito+Sans:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jolly+Lodger&family=Roboto+Condensed&display=swap');
 
 :root {
   --texto: rgb(232, 236, 237);
@@ -10,7 +10,7 @@
 }
 
 * {
-  font-family: 'Nunito Sans', sans-serif !important;
+  font-family: 'Roboto Condensed', sans-serif !important;
 }
 
 body {
@@ -58,6 +58,7 @@ header img {
 header h1 {
   margin: 0;
   font-size: 64px;
+  filter: drop-shadow(4px 4px 3px black);
 }
 
 .jolly-font {
@@ -71,9 +72,26 @@ main {
   min-height: 65vh;
 }
 
+.index-icon {
+  height: 48px;
+  width: 48px;
+}
+
 .card {
   padding-top: 12px !important;
   background-color: var(--secundario) !important;
+  text-overflow: ellipsis ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.card-title {
+  max-height: 64px !important;
+  display: inline-block !important;
+}
+
+.card-icon {
+  height: 24px;
 }
 
 .btn-primary {
@@ -98,15 +116,14 @@ section {
 
 section .button {
   background: rgb(32, 47, 54);
-  background: linear-gradient(180deg, rgba(50, 58, 60, 0.5) 18%, rgba(83, 99, 101, 0.5) 78%);
+  background: linear-gradient(180deg, rgba(50, 58, 60, 0.5) 18%, rgba(93, 130, 134, 0.5) 78%);
   border-radius: 15px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 section .button:hover {
   animation: gradientTransition 100ms;
-  background: rgba(83, 99, 101, 0.6);
-  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 0px 5px rgba(157, 206, 198, 0.8);
 }
 
 form {
@@ -114,7 +131,7 @@ form {
 }
 
 input {
-  background-color: #d1ffe9 !important;
+  background-color: #104b2e !important;
   border-radius: 10px !important;
   border: none !important;
   outline: none !important;
@@ -122,12 +139,34 @@ input {
 
 footer {
   color: var(--texto);
-  background-color: var(--secundario);
+  background-color: var(--fondo);
+}
+
+footer h2, .index-card-title {
+  filter: drop-shadow(3px 3px 3px black);
+  transition: 150ms;
+}
+
+footer h2:hover {
+  filter: drop-shadow(2px 2px 2px rgb(0, 0, 0));
+}
+
+footer a img {
+  padding: 3px !important;
+  width: 36px !important;
+  height: 36px !important;
+  background-color: white !important;
+  border-radius: 100% !important;
+  transition: 0.2s;
+}
+
+footer img:hover {
+  padding: 2px !important;
 }
 
 @keyframes gradientTransition {
   0% {
-    background: rgba(111, 123, 122, 0.3);
+    background: rgba(153, 168, 167, 0.3);
   }
   50% {
     background: rgba(102, 119, 117, 0.3);
