@@ -4,9 +4,9 @@
   --texto: rgb(232, 236, 237);
   --fondo: rgb(11, 14, 14);
   --primario: rgb(55, 105, 118);
-  --secundario: rgb(18, 34, 38);
+  --secundario: rgb(0, 27, 30);
   --acento: rgb(69, 155, 176);
-  --acento-2: rgb(69, 176, 155);
+  --acento-2: rgb(62, 160, 140);
 }
 
 * {
@@ -31,12 +31,12 @@ header {
   color: var(--texto);
   display: flex !important;
   align-items: center;
-  background-color: var(--secundario);
+  background: var(--secundario);
+  background: linear-gradient(180deg, var(--secundario) 40%, rgb(5, 40, 43) 100%);
 }
 
 header .button {
-  background: rgb(52,60,50);
-  background: linear-gradient(180deg, rgba(50, 58, 60, 0.2) 18%, rgba(83, 101, 99, 0.2) 78%);
+  background: linear-gradient(180deg, rgba(29, 29, 29, 0.2) 18%, rgba(87, 87, 87, 0.2) 78%);
   border-radius: 15px;
   outline: 1px solid rgba(83, 85, 101, 0.2);
 }
@@ -79,7 +79,8 @@ main {
 
 .card {
   padding-top: 12px !important;
-  background-color: var(--secundario) !important;
+  background: rgb(9,61,66);
+  background: radial-gradient(circle, rgba(9,61,66,1) 0%, var(--secundario) 100%);
   text-overflow: ellipsis ellipsis !important;
   overflow: hidden !important;
   white-space: nowrap !important;
@@ -88,6 +89,14 @@ main {
 .card-title {
   max-height: 64px !important;
   display: inline-block !important;
+}
+.card-title, 
+.card h1, 
+.card p, 
+form h1, 
+header span,
+section h1 {
+  filter: drop-shadow(1px 1px 3px rgb(5, 5, 5)) !important;
 }
 
 .card-icon {
@@ -116,7 +125,7 @@ section {
 
 section .button {
   background: rgb(32, 47, 54);
-  background: linear-gradient(180deg, rgba(50, 58, 60, 0.5) 18%, rgba(93, 130, 134, 0.5) 78%);
+  background: linear-gradient(180deg, rgba(47, 61, 65, 0.5) 18%, rgba(81, 130, 136, 0.5) 78%);
   border-radius: 15px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
