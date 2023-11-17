@@ -14,7 +14,8 @@ html
       header(class="row d-flex flex-column flex-md-row align-items-center p-3")
         div(class="col-xl d-flex align-items-center justify-content-center mb-sm-3")
           img(class="col-0 ml-5" src="/images/logo.png")
-          h1(class="col display-3 w-50 jolly-font") VINYL VORTEX  
+          a(href='/catalog' class="col")
+            h1(class="display-3 w-50 jolly-font") VINYL VORTEX  
         div(class="col-xl d-flex flex-wrap justify-content-center" id="navContainer")
           a(href='/catalog', class="col-xl button d-flex flex-column justify-content-center align-items-center py-2 px-4 mb-3 mr-3") 
             img(class="icon", src='/images/icons/homeIcon.png')
@@ -53,10 +54,8 @@ html
             a(href='/catalog/genre/create', class="col-12.col-md-6.col-lg d-flex align-items-center button py-2 px-4 mr-3 mb-3 mb-xl-0") 
               img(class="icon mr-2", src='/images/icons/genreIcon.png')
               p(class="h3 mb-0") Add a Genre
-
-      footer(class="p-3 d-flex justify-content-center align-items-center")
+    footer(class="p-3 d-flex justify-content-center align-items-center")
         a(href='https://github.com/bzagustin' class="d-flex justify-content-center align-items-center")
           img(src='/images/github.png' class="mr-2")
           h2(class="display-5 mb-0") BZAgustin
-
     
