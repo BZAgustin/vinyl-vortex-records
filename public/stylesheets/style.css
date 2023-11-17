@@ -32,7 +32,7 @@ header {
   display: flex !important;
   align-items: center;
   background: var(--secundario);
-  background: linear-gradient(180deg, var(--secundario) 40%, rgb(5, 40, 43) 100%);
+  background: linear-gradient(180deg, var(--secundario) 20%, rgb(3, 34, 37) 100%);
 }
 
 header .button {
