@@ -6,7 +6,7 @@ block content
   .container-fluid
     .row
       each albumInstance in albumsInStock
-        .col-12.col-lg-6.col-xl-3
+        .col-6.col-xl-3
           .card.mb-4.d-flex.flex-column.align-items-center.justify-content-center.p-3
             img(class="card-img-top w-100", src=albumInstance.album.cover, alt="Card image cap")
             .card-body.d-flex.flex-column.align-items-center
