@@ -2,7 +2,7 @@
 
 :root {
   --texto: rgb(232, 236, 237);
-  --fondo: rgb(11, 14, 14);
+  --fondo: rgb(2, 5, 5);
   --primario: rgb(55, 105, 118);
   --secundario: rgb(0, 27, 30);
   --acento: rgb(69, 155, 176);
@@ -14,7 +14,6 @@
 }
 
 body {
-  background-color: var(--fondo) !important;
   height: 100vh;
   overflow-x: hidden;
 }
@@ -67,8 +66,8 @@ header h1 {
 
 main {
   color: var(--texto);
-  background-color: var(--fondo);
-  border-radius: 0 0 15px 15px;
+  background: rgb(5,31,33);
+  background: radial-gradient(circle, rgb(3, 22, 24) 0%, rgba(2,5,5,1) 100%);
   min-height: 65vh;
 }
 
@@ -148,7 +147,8 @@ input {
 
 footer {
   color: var(--texto);
-  background-color: var(--fondo);
+  background: rgb(46,46,46);
+  background: linear-gradient(180deg, rgba(46,46,46,1) 0%, rgba(14,14,14,1) 100%);
 }
 
 footer h2, .index-card-title {
