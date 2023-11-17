@@ -1,10 +1,27 @@
 extends layout
 
 block content
-  .container.h-100.d-flex.flex-column.justify-content-center.align-items-center
+  .container-fluid.h-100.d-flex.flex-column.justify-content-center.align-items-center
     h1 #{title}: #{album.title}
+    if albumInstances.length
 
-    p Do you really want to delete this album?
+      p #[strong Delete the following copies before attempting to delete this album:]
+
+      .container-fluid
+        .row
+          each instance in albumInstances
+            .col-12.col-lg-6.col-xl-3
+              .card.d-flex.flex-column.align-items-center.justify-content-center.p-3.mb-4.shadow
+                img(class="card-img-top w-100", src=instance.album.cover, alt="Album cover")
+                .card-body.d-flex.flex-column.align-items-center
+                  h2(class="card-title") #{instance.album.title}
+                  h6(class="card-title") #{instance.album.artist.stageName}
+        .row.d-flex.justify-content-center
+          a(href='/catalog/albums')
+            button.btn.btn-primary.mt-3.mr-3 Go Back
+
+    else
+      p Do you really want to delete this album?
 
       form.bg-transparent(method='POST' action='')
         div.form-group

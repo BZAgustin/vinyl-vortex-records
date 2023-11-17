@@ -140,7 +140,16 @@ exports.albumCreatePost = [
   ];
 
 exports.albumDeleteGet = asyncHandler(async (req, res, next) => {
-  const album = await Album.findById(req.params.id).exec();
+  const [album, albumInstances] = await Promise.all([
+    Album.findById(req.params.id).exec(),
+    AlbumInstance.find({ album: req.params.id }).populate({
+      path: 'album',
+      populate: {
+        path: 'artist',
+        select: 'stageName',
+      },
+    }).exec()
+  ]);
 
   if(!album) {
     const err = new Error('Album not found');
@@ -148,7 +157,7 @@ exports.albumDeleteGet = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render('albumDelete', { title: 'Delete Album', album });
+  res.render('albumDelete', { title: 'Delete Album', album, albumInstances });
 });
 
 exports.albumDeletePost = asyncHandler(async (req, res, next) => {
