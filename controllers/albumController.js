@@ -35,7 +35,7 @@ exports.albumList = asyncHandler(async (req, res, next) => {
 
   const allAlbums = [];
   
-  albums.forEach((i) => allAlbums.push(i));
+  albums.forEach((i) => allAlbums.unshift(i));
 
   res.render('albums', { title: 'Albums', albumList: allAlbums });
 });

@@ -9,7 +9,7 @@ exports.artistList = asyncHandler(async (req, res, next) => {
 
   const allArtists = [];
 
-  artists.forEach(i => allArtists.push(i));
+  artists.forEach(i => allArtists.unshift(i));
 
   res.render('artists', { title: 'Artists', artistList: allArtists })
 });

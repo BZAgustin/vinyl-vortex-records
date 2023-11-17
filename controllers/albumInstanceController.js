@@ -9,7 +9,7 @@ exports.albumInstanceList = asyncHandler(async (req, res, next) => {
 
   const albumInstances = [];
 
-  instances.forEach((i) => albumInstances.push(i));
+  instances.forEach((i) => albumInstances.unshift(i));
 
   const albumDetails = await AlbumInstance.populate(albumInstances, {
     path: 'album',

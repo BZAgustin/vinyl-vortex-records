@@ -9,7 +9,7 @@ exports.genreList = asyncHandler(async (req, res, next) => {
 
   const allGenres = [];
 
-  genres.forEach(i => allGenres.push(i));
+  genres.forEach(i => allGenres.unshift(i));
   
   res.render('genres', { title: 'Genres', genreList: allGenres });
 });
