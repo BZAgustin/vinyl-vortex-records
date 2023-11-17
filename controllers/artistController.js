@@ -5,7 +5,11 @@ const Artist = require('../models/artist');
 const Album = require('../models/album');
 
 exports.artistList = asyncHandler(async (req, res, next) => {
-  const allArtists = await Artist.find({}, 'stageName').exec();
+  const artists = await Artist.find({}, 'stageName').exec();
+
+  const allArtists = [];
+
+  artists.forEach(i => allArtists.push(i));
 
   res.render('artists', { title: 'Artists', artistList: allArtists })
 });

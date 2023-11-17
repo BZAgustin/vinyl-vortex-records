@@ -5,7 +5,11 @@ const AlbumInstance = require('../models/albumInstance');
 const Album = require('../models/album');
 
 exports.albumInstanceList = asyncHandler(async (req, res, next) => {
-  const albumInstances = await AlbumInstance.find({}).exec();
+  const instances = await AlbumInstance.find({}).exec();
+
+  const albumInstances = [];
+
+  instances.forEach((i) => albumInstances.push(i));
 
   const albumDetails = await AlbumInstance.populate(albumInstances, {
     path: 'album',

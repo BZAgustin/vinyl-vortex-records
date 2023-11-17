@@ -29,9 +29,13 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.albumList = asyncHandler(async (req, res, next) => {
-  const allAlbums = await Album.find({})
+  const albums = await Album.find({})
                                .populate('artist', 'stageName')
                                .exec();
+
+  const allAlbums = [];
+  
+  albums.forEach((i) => allAlbums.push(i));
 
   res.render('albums', { title: 'Albums', albumList: allAlbums });
 });

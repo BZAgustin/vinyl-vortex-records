@@ -6,8 +6,12 @@ const Album = require('../models/album')
 
 exports.genreList = asyncHandler(async (req, res, next) => {
   const genres = await Genre.find({}).exec();
+
+  const allGenres = [];
+
+  genres.forEach(i => allGenres.push(i));
   
-  res.render('genres', { title: 'Genres', genreList: genres });
+  res.render('genres', { title: 'Genres', genreList: allGenres });
 });
 
 exports.genreDetail = asyncHandler(async (req, res, next) => {
